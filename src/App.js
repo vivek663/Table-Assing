@@ -17,6 +17,10 @@ const App = () => {
     setRows((prevRows) => [...prevRows, { label1: "", label2: [] }]);
   };
 
+  const deleteRow = (rowIndex) => {
+    setRows((prevRows) => prevRows.filter((_, index) => index !== rowIndex));
+  };
+
   const handleLabel1Change = (selectedOption, rowIndex) => {
     setRows((prevRows) =>
       prevRows.map((row, index) =>
@@ -92,6 +96,7 @@ const App = () => {
             <tr>
               <th>Label 1</th>
               <th>Label 2</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -128,15 +133,24 @@ const App = () => {
                       handleLabel2Change(selectedValues, rowIndex)
                     }
                     options={label2Options}
-                    className="select-dropdown"
+                    className="select-dropdown2"
                     closeMenuOnSelect={false}
                     components={{ Menu: CustomMenu }}
                     placeholder="Select Options"
                   />
                 </td>
+                <td>
+                  <button
+                    onClick={() => deleteRow(rowIndex)}
+                    className="btn-delete-row"
+                  >
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
             <tr className="emptyRow">
+              <td className="emptyRow"></td>
               <td className="emptyRow"></td>
               <td className="emptyRow"></td>
             </tr>
