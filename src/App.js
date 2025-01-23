@@ -52,7 +52,7 @@ const App = () => {
         ...prevOptions,
         { value: newLabel2Option, label: newLabel2Option },
       ]);
-      setNewLabel2Option(""); // Clear the input after adding
+      setNewLabel2Option("");
     }
   };
 
@@ -73,7 +73,7 @@ const App = () => {
             value={newLabel2Option}
             onChange={(e) => setNewLabel2Option(e.target.value)}
             placeholder="Add new option"
-            onClick={(e) => e.stopPropagation()} // Prevent dropdown close
+            onClick={(e) => e.stopPropagation()}
             style={{
               flex: 1,
               padding: "5px",
@@ -84,7 +84,7 @@ const App = () => {
           />
           <button
             onClick={(e) => {
-              e.stopPropagation(); // Prevent dropdown close
+              e.stopPropagation();
               handleAddNewLabel2Option();
             }}
             style={{
@@ -111,7 +111,7 @@ const App = () => {
           border="1"
           style={{ width: "70%", marginBottom: "20px" }}
           className="table"
-        >
+        >                                            {/* Table */}
           <thead>
             <tr>
               <th className="thread">Label 1</th>
@@ -121,7 +121,7 @@ const App = () => {
           <tbody>
             {rows.map((row, rowIndex) => (
               <tr key={rowIndex}>
-                <td className="basic-multi-select">
+                <td className="basic-multi-select">  {/* Single option DropDown */}
                   <Select
                     value={
                       row.label1
@@ -139,11 +139,11 @@ const App = () => {
                       )
                       .map((option) => ({ value: option, label: option }))}
                     isClearable
-                    placeholder="Select an option"
+                    placeholder="Select option"
                     className="selctDrop"
                   />
                 </td>
-                <td className="basic-multi-select">
+                <td className="basic-multi-select"> {/* multiple option DropDown */}
                   <Select
                     isMulti
                     name="label2"
@@ -154,9 +154,9 @@ const App = () => {
                     options={label2Options}
                     className="selctDrop"
                     classNamePrefix="select"
-                    closeMenuOnSelect={false} // Keeps the dropdown open for multi-select
-                    components={{ Menu: CustomMenu }} // Use the custom menu
-                    placeholder="Select Multiple Options"
+                    closeMenuOnSelect={false}
+                    components={{ Menu: CustomMenu }}
+                    placeholder="Select Options"
                   />
                 </td>
               </tr>
