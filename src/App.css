@@ -78,13 +78,13 @@
 }
 
 .basic-multi-select {
-  margin: 10px;
-  padding: 10px;
+  margin: 0px;
+  padding: 0px;
   text-align: center;
 }
 
 .selctDrop {
-  width: 300px;
+  width: 60%;
   margin: auto;
   margin-top: 20px;
   margin-bottom: 20px;
