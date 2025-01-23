@@ -60,41 +60,21 @@ const App = () => {
     return (
       <components.Menu {...props}>
         {props.children}
-        <div
-          style={{
-            padding: "10px",
-            borderTop: "1px solid #ddd",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
+        <div className="custom-menu">
           <input
             type="text"
             value={newLabel2Option}
             onChange={(e) => setNewLabel2Option(e.target.value)}
             placeholder="Add new option"
             onClick={(e) => e.stopPropagation()}
-            style={{
-              flex: 1,
-              padding: "5px",
-              border: "1px solid #ccc",
-              borderRadius: "5px",
-              marginRight: "10px",
-            }}
+            className="input-new-option"
           />
           <button
             onClick={(e) => {
               e.stopPropagation();
               handleAddNewLabel2Option();
             }}
-            style={{
-              padding: "5px 10px",
-              backgroundColor: "#4CAF50",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
+            className="btn-add-option"
           >
             Add
           </button>
@@ -104,24 +84,20 @@ const App = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1 style={{ textAlign: "center" }}>Dynamic Table with Dropdowns</h1>
-      <div className="tableContainer">
-        <table
-          border="1"
-          style={{ width: "70%", marginBottom: "20px" }}
-          className="table"
-        >                                            {/* Table */}
+    <div className="container">
+      <h1>Dynamic Table with Dropdowns</h1>
+      <div className="table-container">
+        <table className="wireframe-table">
           <thead>
             <tr>
-              <th className="thread">Label 1</th>
-              <th className="thread">Label 2</th>
+              <th>Label 1</th>
+              <th>Label 2</th>
             </tr>
           </thead>
           <tbody>
             {rows.map((row, rowIndex) => (
               <tr key={rowIndex}>
-                <td className="basic-multi-select">  {/* Single option DropDown */}
+                <td className="single-select-cell">
                   <Select
                     value={
                       row.label1
@@ -140,10 +116,10 @@ const App = () => {
                       .map((option) => ({ value: option, label: option }))}
                     isClearable
                     placeholder="Select option"
-                    className="selctDrop"
+                    className="select-dropdown"
                   />
                 </td>
-                <td className="basic-multi-select"> {/* multiple option DropDown */}
+                <td className="multi-select-cell">
                   <Select
                     isMulti
                     name="label2"
@@ -152,8 +128,7 @@ const App = () => {
                       handleLabel2Change(selectedValues, rowIndex)
                     }
                     options={label2Options}
-                    className="selctDrop"
-                    classNamePrefix="select"
+                    className="select-dropdown"
                     closeMenuOnSelect={false}
                     components={{ Menu: CustomMenu }}
                     placeholder="Select Options"
@@ -161,11 +136,15 @@ const App = () => {
                 </td>
               </tr>
             ))}
+            <tr className="emptyRow">
+              <td className="emptyRow"></td>
+              <td className="emptyRow"></td>
+            </tr>
           </tbody>
         </table>
       </div>
-      <div className="btomButton">
-        <button onClick={addRow} className="addrowBtn">
+      <div className="add-row-button">
+        <button onClick={addRow} className="btn-add-row">
           + Add New Row
         </button>
       </div>
